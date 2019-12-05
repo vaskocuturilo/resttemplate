@@ -28,6 +28,7 @@ public class MockService {
                 .willReturn(aResponse()
                         .withStatus(SUCCESS)
                         .withHeader("Content-Type", "application/json")
-                        .withBody("{\"id\":1,\"name\":\"Leanne Graham\"}")));
+                        .withBody("{\"id\":1,\"name\":\"Leanne Graham\"," +
+                                "\"username\": \"Bret\",\"email\": \"Sincere@april.biz\"}")));
     }
 }

@@ -21,8 +21,12 @@ public class JsonPlaceholderTest extends BaseApi {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<String> response = restTemplate.getForEntity(ENDPOINT, String.class);
         User user = restTemplate.getForObject(ENDPOINT, User.class);
+
         assertThat(response.getStatusCode(), equalTo(HttpStatus.OK));
         assertThat(user.getId(), equalTo(1));
         assertThat(user.getName(), equalTo(FIRST_LAST_NAME));
+        assertThat(user.getUsername(), equalTo("Bret"));
+        assertThat(user.getEmail(), equalTo("Sincere@april.biz"));
+
     }
 }
