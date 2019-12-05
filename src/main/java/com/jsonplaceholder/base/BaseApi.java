@@ -7,15 +7,19 @@ import org.testng.annotations.BeforeTest;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.options;
 
+
+/**
+ * The class Base api.
+ */
 public class BaseApi {
 
     /**
-     * Value mWireMockServer.
+     * The private value mWireMockServer.
      */
     private WireMockServer mWireMockServer;
 
     /**
-     * Value HTTP_PORT.
+     * The constant HTTP_PORT.
      */
     public static final int HTTP_PORT = 8091;
 
@@ -28,7 +32,7 @@ public class BaseApi {
         mWireMockServer = new WireMockServer(options().port(HTTP_PORT));
         mWireMockServer.start();
 
-        MockService mockService = new MockService();
+        final MockService mockService = new MockService();
         mockService.startMockService();
     }
 

@@ -13,7 +13,7 @@ public class Environment {
      * @return the boolean.
      */
     public boolean isCheckOperationSystem() {
-        String typeOfOperationSystem = System.getProperty("os.name");
+        final String typeOfOperationSystem = System.getProperty("os.name");
 
         return (typeOfOperationSystem.contains("nix") || typeOfOperationSystem.contains("nux"));
     }
