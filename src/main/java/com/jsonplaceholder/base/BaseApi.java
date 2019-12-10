@@ -33,7 +33,8 @@ public class BaseApi {
         mWireMockServer.start();
 
         final MockService mockService = new MockService();
-        mockService.startMockService();
+        mockService.startGetMockService();
+        mockService.startAnyMockService();
     }
 
     /**

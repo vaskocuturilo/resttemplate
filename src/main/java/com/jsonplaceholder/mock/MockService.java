@@ -20,9 +20,9 @@ public class MockService {
     }
 
     /**
-     * Start mock service.
+     * Start get mock service.
      */
-    public void startMockService() {
+    public void startGetMockService() {
         configureFor("localhost", HTTP_PORT);
         stubFor(get(urlPathMatching("/users/1"))
                 .willReturn(aResponse()
@@ -30,5 +30,28 @@ public class MockService {
                         .withHeader("Content-Type", "application/json")
                         .withBody("{\"id\":1,\"name\":\"Leanne Graham\"," +
                                 "\"username\": \"Bret\",\"email\": \"Sincere@april.biz\"}")));
+    }
+
+    /**
+     * Start post mock service.
+     */
+    public void startPostMockService() {
+        configureFor("localhost", HTTP_PORT);
+        givenThat(post(urlEqualTo("/users/message"))
+                .withRequestBody(equalToJson("{\"message\": \"Hello World!\"}"))
+                .willReturn(aResponse().withStatus(200)));
+    }
+
+
+    /**
+     * Start any mock service.
+     */
+    public void startAnyMockService() {
+        configureFor("localhost", HTTP_PORT);
+        stubFor(get(urlPathMatching("/users/test"))
+                .willReturn(aResponse()
+                        .withStatus(404)
+                        .withHeader("Content-Type", "application/json")
+                        .withBody("{\"status\":\"Error\"}")));
     }
 }

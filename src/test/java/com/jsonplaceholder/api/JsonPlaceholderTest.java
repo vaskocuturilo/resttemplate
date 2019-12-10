@@ -1,5 +1,6 @@
 package com.jsonplaceholder.api;
 
+import com.jsonplaceholder.api.schema.Error;
 import com.jsonplaceholder.api.schema.User;
 import com.jsonplaceholder.base.BaseApi;
 import org.springframework.http.HttpStatus;
@@ -29,4 +30,15 @@ public class JsonPlaceholderTest extends BaseApi {
         assertThat(user.getEmail(), equalTo("Sincere@april.biz"));
 
     }
+
+    @Test(description = "This is test check error status.")
+    public void testGetErrorStatus() throws InterruptedException {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:8091/users/test", String.class);
+        Error errorMessage = restTemplate.getForObject("http://localhost:8091/users/test", Error.class);
+        assertThat(errorMessage.getStatus(), equalTo("Error"));
+        assertThat(response.getStatusCode(), equalTo(HttpStatus.NOT_FOUND));
+
+    }
+
 }
